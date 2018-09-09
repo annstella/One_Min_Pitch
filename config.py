@@ -1,17 +1,17 @@
-# import os
+import os
 
-# class Config:
-
-
-
-# class ProdConfig(Config):
-#     pass
+class Config:
 
 
-# class DevConfig(Config):
-#     DEBUG = True
+ class ProdConfig(Config):
+    
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://annstella:sterun@localhost/watchlist'
 
-# config_options = {
-# 'development':DevConfig,
-# 'production':ProdConfig
-# }
+
+class DevConfig(Config):
+    DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+}
