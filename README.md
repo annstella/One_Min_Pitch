@@ -15,11 +15,8 @@ flask-wtf
 flask-bootstrap
 
 ### Technologies used
-Flask
-python3.6
-Bootstrap
-Google fonts
-css
+
+Flask,python3.6,python3.6,Bootstrap,Google fonts,css
 
 
 ## Deployment
