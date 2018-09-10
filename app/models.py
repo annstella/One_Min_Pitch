@@ -41,3 +41,8 @@ class Group(db.Model):
     name = db.Column(db.String(255))
      lines = db.relationship('Line', backref='group', lazy='dynamic')
 
+      def save_group(self):
+
+        db.session.add(self)
+        db.session.commit()
+
