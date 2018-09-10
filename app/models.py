@@ -72,4 +72,21 @@ class Line(db.Model):
 
         return lines
 
+class Comment(db.Model):
+     __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key = True)
+    comment_content = db.Column(db.String)
+    line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,line_id):
+
+         comments = Comment.query.filter_by(line_id=line_id).all()
+
+        return comments
 
