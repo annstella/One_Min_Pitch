@@ -45,4 +45,11 @@ class Group(db.Model):
 
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_groups(cls):
+
+         groups = Group.query.all()
+
+         return groups
 
