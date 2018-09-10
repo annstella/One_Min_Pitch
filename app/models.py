@@ -53,3 +53,23 @@ class Group(db.Model):
 
          return groups
 
+class Line(db.Model):
+    __tablename__ = 'lines'
+    id = db.Column(db.Integer, primary_key = True)
+     line_content = db.Column(db.String(200))
+    group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+    comments = db.relationship('Comment', backref='line', lazy='dynamic')
+
+    def save_line(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_lines(cls,group_id)
+
+        lines = Line.query.order_by(Line.id.desc()).filter_by(group_id=group_id).all()
+
+        return lines
+
+
