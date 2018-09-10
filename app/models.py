@@ -36,4 +36,8 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
 
 class Group(db.Model):
+    __tablename__ = 'groups'
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(255))
+     lines = db.relationship('Line', backref='group', lazy='dynamic')
 
