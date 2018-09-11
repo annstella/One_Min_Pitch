@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Group,Line,Comment,Vote
-from .forms import LineForm,CommentForm,GroupForm,UpvoteForm
+from ..models import Group,Line,Comment
+from .forms import LineForm,CommentForm,GroupForm
 from flask_login import login_required,current_user
 
 # Views
@@ -32,7 +32,7 @@ def new_group():
         return redirect(url_for('.index'))
 
     title = 'New Group'
-    return render_template('new_group.html', group_form = form)
+    return render_template('new-group.html', group_form = form)
 
 
 @main.route('/group/<int:id>')

@@ -6,7 +6,6 @@ from sqlalchemy.sql import func
 
 @login_manager.user_loader
 def load_user(user_id):
-
     return User.query.get(int(user_id))
 
 class User(UserMixin,db.Model):
@@ -15,9 +14,12 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255), unique = True, index = True)
     password_hash = db.Column(db.String(255))
+
+
     lines = db.relationship('Line', backref='user', lazy='dynamic')
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
-    votes = db.relationship('Vote', backref='user', lazy='dynamic')
+    # pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
+    # groups = db.relationship('Group', backref='user', lazy='dynamic')
 
 
     @property
@@ -39,9 +41,9 @@ class Group(db.Model):
     __tablename__ = 'groups'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
-     lines = db.relationship('Line', backref='group', lazy='dynamic')
+    lines = db.relationship('Line', backref='group', lazy='dynamic')
 
-      def save_group(self):
+    def save_group(self):
 
         db.session.add(self)
         db.session.commit()
@@ -56,7 +58,7 @@ class Group(db.Model):
 class Line(db.Model):
     __tablename__ = 'lines'
     id = db.Column(db.Integer, primary_key = True)
-     line_content = db.Column(db.String(200))
+    line_content = db.Column(db.String(200))
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
     user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
     comments = db.relationship('Comment', backref='line', lazy='dynamic')
@@ -66,27 +68,27 @@ class Line(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_lines(cls,group_id)
+    def get_lines(cls,group_id):
 
         lines = Line.query.order_by(Line.id.desc()).filter_by(group_id=group_id).all()
 
         return lines
 
 class Comment(db.Model):
-     __tablename__ = 'comments'
-    id = db.Column(db.Integer, primary_key = True)
-    comment_content = db.Column(db.String)
-    line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer,primary_key = True)
+    comment_content =db.Column(db.String)
+    line_id =db.Column(db.Integer,db.ForeignKey('lines.id'))
+    user_id =db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def save_comment(self):
-        db.session.add(self)
-        db.session.commit()
+def save_comment(self):
+    db.session.add(self)
+    db.session.commit()
 
-    @classmethod
-    def get_comments(cls,line_id):
+@classmethod
+def get_comments(cls,line_id):
 
-         comments = Comment.query.filter_by(line_id=line_id).all()
+    comments = Comment.query.filter_by(line_id=line_id).all()
 
-        return comments
+    return comments
 
