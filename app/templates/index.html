@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
 
 <!-- Styles block -->
 {% block styles%}
@@ -41,6 +43,13 @@
         </div>
 
         <hr>
+
+        
+        <ul class="list-unstyled">
+            {{ macro.displayGroupList(groups) }}
+        </ul>
+
+
 
 
     </div>
