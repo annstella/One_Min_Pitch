@@ -20,7 +20,7 @@ As a user:
 
 * Still you can add a category of your choice and write a pitch to it.
 
-###Things you need to install the software.
+### Things you need to install the software.
 
 * Flask==1.0.2
 * Flask-Bootstrap==3.3.7.1
@@ -58,6 +58,8 @@ As a user:
 
 Link to a live site:https://aminutepitch.herokuapp.com/
 
+## Known bugs
+So far its the upvote and downvote which was not implemented
 
 ## Authors
 
