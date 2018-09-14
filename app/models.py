@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-from sqlalchemy.sql import func
+# from sqlalchemy.sql import func
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -81,14 +81,14 @@ class Comment(db.Model):
     line_id =db.Column(db.Integer,db.ForeignKey('lines.id'))
     user_id =db.Column(db.Integer,db.ForeignKey('users.id'))
 
-def save_comment(self):
-    db.session.add(self)
-    db.session.commit()
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
 
-@classmethod
-def get_comments(cls,line_id):
+    @classmethod
+    def get_comments(cls,line_id):
 
-    comments = Comment.query.filter_by(line_id=line_id).all()
+        comments = Comment.query.filter_by(line_id=line_id).all()
 
-    return comments
+        return comments
 

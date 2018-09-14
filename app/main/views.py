@@ -23,7 +23,7 @@ def new_group():
 
     form = GroupForm()
 
-    if form.valcategoryidate_on_submit():
+    if form.validate_on_submit():
         name = form.name.data
         new_group = Group(name=name)
         new_group.save_group()
