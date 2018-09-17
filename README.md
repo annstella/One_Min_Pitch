@@ -56,7 +56,7 @@ As a user:
 
 ## Deployment
 
-Link to a live sitehttps://aminpitch.herokuapp.com/
+Link to a live site: https://aminpitch.herokuapp.com/
 
 ## Known bugs
 So far its the upvote and downvote which was not implemented
